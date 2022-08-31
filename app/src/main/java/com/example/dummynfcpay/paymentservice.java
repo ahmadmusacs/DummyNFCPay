@@ -17,6 +17,8 @@ public class paymentservice extends HostApduService {
     public static final byte[] gpo_array = {Byte.MIN_VALUE, -88, 0, 0, 4, -125, 2, Byte.MIN_VALUE, 0, 0};
     public static final byte[] gen_ac_array = {};
 
+    public static String select_aid_response = "6F64840E325041592E5359532E4444463031A552BF0C4661224F07A0000000041010500A5649534120444542495487010142034750555F5502555361204F07A00000009808405008555320444542495487010242034750555F550255539F38069F1D089F1A029000";
+
     private int state = 0;// state variable to ensure the proper flow of commands
 
     @Override
@@ -54,7 +56,7 @@ public class paymentservice extends HostApduService {
         if (Arrays.equals(bytes, select_aid_array))
         {
             state = 1;
-            response = ("6F64840E325041592E5359532E4444463031A552BF0C4661224F07A0000000041010500A5649534120444542495487010142034750555F5502555361204F07A00000009808405008555320444542495487010242034750555F550255539F38069F1D089F1A029000").getBytes(StandardCharsets.UTF_8);
+            response = select_aid_response.getBytes(StandardCharsets.UTF_8);
         }
         else if (state == 1 && Arrays.equals(bytes,gpo_array))
         {
